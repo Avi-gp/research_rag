@@ -14,22 +14,26 @@ RAG-Powered Research Paper Q&A and Summarization System
 ## 🚀 Getting Started
 
 ### 1️⃣ Clone the Repository
-
-git clone
+```bash
+git clone 'https://github.com/Avi-gp/research_rag.git'
 
 cd research_rag
+```
 
 ### 2️⃣ Install Dependencies
-
+```bash
 pip install -r requirements.txt
+```
 
 ### 3️⃣ Start the Backend (FastAPI)
-
+```bash
 python api/main.py
+```
 
 ### 4️⃣ Run the Frontend (Streamlit)
-
-streamlit run streamlit_app.py
+```bash
+streamlit run ui/streamlit_app.py
+```
 
 ### 🔑 Features
 
@@ -44,12 +48,13 @@ streamlit run streamlit_app.py
 ✅ Manage database (clear PDFs, vector store, or reset system)
 
 ### 📂 Project Structure
-
+```bash
 ├── api/               # FastAPI backend
 ├── config/            # Settings and configurations
 ├── data/              # Stored PDFs and vector database
 ├── streamlit_app.py   # Streamlit frontend
 └── requirements.txt   # Dependencies
+```
 
 ### ⚠️ Notes
 
