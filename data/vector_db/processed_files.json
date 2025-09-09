@@ -1,0 +1,44 @@
+{
+  "Advancement_in_AgenticAI.pdf": {
+    "hash": "2fcb4dcf4d26a4a36b861b3b15b9c90c",
+    "chunks": 281,
+    "processed_at": "1757420533.5504634",
+    "file_path": "data\\pdfs\\Advancement_in_AgenticAI.pdf"
+  },
+  "Advancing_AR_VR.pdf": {
+    "hash": "ea81610ea7a797fe6a0a57de428a57c5",
+    "chunks": 175,
+    "processed_at": "1757420533.552519",
+    "file_path": "data\\pdfs\\Advancing_AR_VR.pdf"
+  },
+  "Agentic_AI.pdf": {
+    "hash": "a94d04c7ebb7ba3ae14b832b45457ca0",
+    "chunks": 163,
+    "processed_at": "1757420533.5601494",
+    "file_path": "data\\pdfs\\Agentic_AI.pdf"
+  },
+  "AR_VR.pdf": {
+    "hash": "da0e8ea9806f1d3479e864a38347817f",
+    "chunks": 77,
+    "processed_at": "1757420533.5654998",
+    "file_path": "data\\pdfs\\AR_VR.pdf"
+  },
+  "challenge_and_opp_semiconductors.pdf": {
+    "hash": "8defe1a1298cd81ed636d28c792d907e",
+    "chunks": 232,
+    "processed_at": "1757420533.5841105",
+    "file_path": "data\\pdfs\\challenge_and_opp_semiconductors.pdf"
+  },
+  "GENAI.pdf": {
+    "hash": "ea507e6c0fcd2bcd1ef2f61c2c3b6391",
+    "chunks": 65,
+    "processed_at": "1757420533.5883958",
+    "file_path": "data\\pdfs\\GENAI.pdf"
+  },
+  "Semiconductors.pdf": {
+    "hash": "df1a48d8095c72a018bc7dcfee711244",
+    "chunks": 33,
+    "processed_at": "1757420533.592352",
+    "file_path": "data\\pdfs\\Semiconductors.pdf"
+  }
+}
