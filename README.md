@@ -1,0 +1,67 @@
+# 🧠 ResearchMind
+RAG-Powered Research Paper Q&A and Summarization System
+
+## 📌 Overview
+**ResearchMind** is a modern **Streamlit + FastAPI** application that helps researchers:
+- 📤 Upload and process research papers (PDFs)  
+- ❓ Ask AI-powered questions with citations & similarity scores  
+- 📋 Generate smart summaries (executive, key findings, methodology, etc.)  
+- 📊 Monitor system statistics and embeddings  
+- 🗂 Manage stored PDFs and vector databases  
+
+---
+
+## 🚀 Getting Started
+
+### 1️⃣ Clone the Repository
+```bash
+git clone 'https://github.com/Avi-gp/research_rag.git'
+
+cd research_rag
+```
+
+### 2️⃣ Install Dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 3️⃣ Start the Backend (FastAPI)
+```bash
+python api/main.py
+```
+
+### 4️⃣ Run the Frontend (Streamlit)
+```bash
+streamlit run ui/streamlit_app.py
+```
+
+### 🔑 Features
+
+✅ Upload multiple research papers (PDFs)
+
+✅ RAG-based Q&A with similarity threshold tuning
+
+✅ Generate focused or comprehensive summaries
+
+✅ View system statistics & embeddings info
+
+✅ Manage database (clear PDFs, vector store, or reset system)
+
+### 📂 Project Structure
+```bash
+├── api/               # FastAPI backend
+├── config/            # Settings and configurations
+├── data/              # Stored PDFs and vector database
+├── streamlit_app.py   # Streamlit frontend
+└── requirements.txt   # Dependencies
+```
+
+### ⚠️ Notes
+
+Make sure the FastAPI server is running before using Streamlit.
+
+Only PDF files are supported for ingestion.
+
+Database management actions (resets, clears) are irreversible.
+
+
