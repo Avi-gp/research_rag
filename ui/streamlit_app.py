@@ -273,6 +273,46 @@ def load_custom_css():
     }
     </style>
     """, unsafe_allow_html=True)
+    
+def load_footer():
+    st.markdown("""
+    <style>
+    .footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        background: rgba(0, 0, 0, 0);
+        color: #94a3b8;
+        text-align: center;
+        padding: 10px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 0.9rem;
+        font-weight: 500;
+        z-index: 999;
+        backdrop-filter: blur(15px);
+    }
+    
+    .footer a {
+        color: #94a3b8;
+        text-decoration: none;
+        font-weight: 500;
+    }
+    
+    .footer a:hover {
+        color: #c4b5fd;
+        text-decoration: none;
+    }
+    
+    /* Add padding to main content to avoid footer overlap */
+    .main .block-container {
+        padding-bottom: 70px;
+    }
+    </style>
+    <div class="footer">
+        <p>© 2025 ResearchMind - Developed by <a href="https://github.com/Avi-gp" target="_blank">Suryansh Gupta</a> | Powered by RAG</p>
+    </div>
+    """, unsafe_allow_html=True)
 
 # API base URL
 API_BASE_URL = f"http://localhost:8000/api/v1"
@@ -297,6 +337,7 @@ def create_nav_button(icon, text, is_active=False):
 
 def main():
     load_custom_css()
+    load_footer()
     
     # Initialize session state for page navigation
     if 'current_page' not in st.session_state:
@@ -1057,8 +1098,8 @@ def help_page():
     ## 📚 Step-by-Step Instructions
     
     ### 1. 📤 Upload Research Papers
-    **What it does:** Ingests and processes your PDF research papers for analysis.
-    
+    **What it does:** Ingests and processes your PDF research papers for creating a knowledge base.
+
     **Steps:**
     1. Navigate to the **"Upload Research Papers"** tab in the sidebar
     2. Click the **"Choose PDF files"** button
@@ -1285,7 +1326,6 @@ def help_page():
     
     *Happy researching! 🎓*
     """, unsafe_allow_html=True)
-    st.markdown('</div>', unsafe_allow_html=True)
 
 if __name__ == "__main__":
     main()
