@@ -32,7 +32,7 @@ python api/main.py
 
 ### 4️⃣ Run the Frontend (Streamlit)
 ```bash
-streamlit run ui/streamlit_app.py
+streamlit run ui/app.py
 ```
 
 ### 🔑 Features
@@ -52,7 +52,8 @@ streamlit run ui/streamlit_app.py
 ├── api/               # FastAPI backend
 ├── config/            # Settings and configurations
 ├── data/              # Stored PDFs and vector database
-├── streamlit_app.py   # Streamlit frontend
+├── services/          # # Core logic for LLM, PDF processing, vector store, and RAG pipeline
+├── ui/app.py          # Streamlit frontend
 └── requirements.txt   # Dependencies
 ```
 
