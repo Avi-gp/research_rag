@@ -25,12 +25,25 @@ cd research_rag
 pip install -r requirements.txt
 ```
 
-### 3️⃣ Start the Backend (FastAPI)
+### 3️⃣ Add API Key(s)
+
+Create a .env file in the root directory and add your API keys. For example:
+```bash
+GOOGLE_API_KEY=your_gemini_key_here (For LLM)
+
+NVIDIA_API_KEY=your_nvidia_api_key (FOR Embedding Model)
+
+If you want to use other Embedding Model or LLLM make changes in respective files
+
+```
+
+
+### 4️⃣ Start the Backend (FastAPI)
 ```bash
 python api/main.py
 ```
 
-### 4️⃣ Run the Frontend (Streamlit)
+### 5️⃣ Run the Frontend (Streamlit)
 ```bash
 streamlit run ui/app.py
 ```
