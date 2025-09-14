@@ -1,22 +1,36 @@
-from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from langchain_nvidia_ai_endpoints import NVIDIAEmbeddings
 from config.settings import settings
-import google.generativeai as genai
-from typing import List, Union
+from typing import List
+import logging
+
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 class EmbeddingModel:
     def __init__(self):
-        """Initialize the Google Generative AI embedding model"""
+        """Initialize the NVIDIA embedding model"""
         try:
-            genai.configure(api_key=settings.GOOGLE_API_KEY)
-            self.embedding_model = GoogleGenerativeAIEmbeddings(
+            # Initialize NVIDIA embeddings without truncate parameter
+            # Since documents will be pre-chunked for RAG
+            self.embedding_model = NVIDIAEmbeddings(
                 model=settings.EMBEDDING_MODEL,
-                google_api_key=settings.GOOGLE_API_KEY
+                api_key=settings.NVIDIA_API_KEY,
+                base_url=settings.NVIDIA_BASE_URL,
+                truncate="NONE",
             )
-            print(f"✓ Embedding model initialized: {settings.EMBEDDING_MODEL}")
+        
+            # Test the model with a sample text to ensure it's working
+            test_embedding = self.embedding_model.embed_query("Test connection and Check Embedding Dimension")
+            self.embedding_dimension = len(test_embedding)
+            
+            logger.info(f"✅ Embedding model initialized: {settings.EMBEDDING_MODEL}")
+            logger.info(f"✅ Embedding dimension: {self.embedding_dimension}")
+            
         except Exception as e:
-            print(f"✗ Error initializing embedding model: {str(e)}")
+            logger.error(f"❌ Error initializing embedding model: {str(e)}")
             raise
-    
+
     def get_embeddings(self):
         """Return the embedding model instance"""
         return self.embedding_model
@@ -34,13 +48,14 @@ class EmbeddingModel:
         try:
             if not text or not text.strip():
                 raise ValueError("Input text cannot be empty")
-            
+            logger.info("Generating embedding for input text...")
             embedding = self.embedding_model.embed_query(text)
             return embedding
+            
         except Exception as e:
-            print(f"✗ Error generating embedding for text: {str(e)}")
+            logger.error(f"❌ Error generating embedding for text: {str(e)}")
             raise
-    
+            
     def embed_documents(self, documents: List[str]) -> List[List[float]]:
         """
         Generate embeddings for multiple documents
@@ -62,12 +77,14 @@ class EmbeddingModel:
                 raise ValueError("No valid documents found (all are empty or whitespace)")
             
             if len(valid_documents) != len(documents):
-                print(f"Warning: Filtered out {len(documents) - len(valid_documents)} empty documents")
+                logger.warning(f"Filtered out {len(documents) - len(valid_documents)} empty documents")
             
+            logger.info(f"Generating embeddings for {len(valid_documents)} documents...")
             embeddings = self.embedding_model.embed_documents(valid_documents)
             return embeddings
+            
         except Exception as e:
-            print(f"✗ Error generating embeddings for documents: {str(e)}")
+            logger.error(f"❌ Error generating embeddings for documents: {str(e)}")
             raise
     
     def get_embedding_dimension(self) -> int:
@@ -77,10 +94,4 @@ class EmbeddingModel:
         Returns:
             int: Embedding dimension
         """
-        try:
-            # Test with a sample text to get dimension
-            sample_embedding = self.embed_text("sample text for dimension check")
-            return len(sample_embedding)
-        except Exception as e:
-            print(f"✗ Error getting embedding dimension: {str(e)}")
-            return 0
+        return self.embedding_dimension

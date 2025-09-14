@@ -3,9 +3,10 @@ streamlit
 dotenv
 langchain-core
 langchain-community
+langchain-chroma
+chromadb
 sse-starlette
 pypdf
-faiss-cpu
 pymupdf
 langchain-google-genai
 uvicorn

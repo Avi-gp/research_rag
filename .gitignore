@@ -11,3 +11,19 @@ myVenv/
 # Environment/config files
 .env
 *.env
+
+# Logs
+*.log
+logs/
+
+# Vector Database Files
+data/vector_db/
+data/vector_db/**
+*.bin
+*.sqlite3
+*.db
+*.pickle
+index_metadata.pickle
+
+# Processed Files
+processed_files.json
