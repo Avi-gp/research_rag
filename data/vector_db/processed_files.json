@@ -2,85 +2,73 @@
   "Advancement_in_AgenticAI.pdf": {
     "hash": "2fcb4dcf4d26a4a36b861b3b15b9c90c",
     "chunks": 281,
-    "processed_at": "1757854706.389087",
+    "processed_at": "1757944004.5924978",
     "file_path": "data\\pdfs\\Advancement_in_AgenticAI.pdf"
-  },
-  "Advancing_AR_VR.pdf": {
-    "hash": "ea81610ea7a797fe6a0a57de428a57c5",
-    "chunks": 175,
-    "processed_at": "1757854706.3899007",
-    "file_path": "data\\pdfs\\Advancing_AR_VR.pdf"
   },
   "Agentic_AI.pdf": {
     "hash": "a94d04c7ebb7ba3ae14b832b45457ca0",
     "chunks": 163,
-    "processed_at": "1757854706.3990114",
+    "processed_at": "1757944004.6039052",
     "file_path": "data\\pdfs\\Agentic_AI.pdf"
   },
   "AiAgents_vs_AgenticAi.pdf": {
     "hash": "41f14b4b80f36bf4433ba2dbce7dffd3",
     "chunks": 261,
-    "processed_at": "1757854706.40574",
+    "processed_at": "1757944004.60938",
     "file_path": "data\\pdfs\\AiAgents_vs_AgenticAi.pdf"
   },
   "AR_VR.pdf": {
     "hash": "da0e8ea9806f1d3479e864a38347817f",
     "chunks": 77,
-    "processed_at": "1757854706.40574",
+    "processed_at": "1757944004.6154938",
     "file_path": "data\\pdfs\\AR_VR.pdf"
+  },
+  "AR_VR_Medical.pdf": {
+    "hash": "aceb61a5cb9b65ed398144338ee79bc4",
+    "chunks": 84,
+    "processed_at": "1757944004.617384",
+    "file_path": "data\\pdfs\\AR_VR_Medical.pdf"
   },
   "challenge_and_opp_semiconductors.pdf": {
     "hash": "8defe1a1298cd81ed636d28c792d907e",
     "chunks": 232,
-    "processed_at": "1757854706.4238632",
+    "processed_at": "1757944004.6364899",
     "file_path": "data\\pdfs\\challenge_and_opp_semiconductors.pdf"
   },
   "cureus_future_of_AI.pdf": {
     "hash": "9f35fb61f461acc064f6561eb91471dd",
     "chunks": 57,
-    "processed_at": "1757854706.4238632",
+    "processed_at": "1757944004.639024",
     "file_path": "data\\pdfs\\cureus_future_of_AI.pdf"
   },
   "GENAI.pdf": {
     "hash": "ea507e6c0fcd2bcd1ef2f61c2c3b6391",
     "chunks": 65,
-    "processed_at": "1757854706.4238632",
+    "processed_at": "1757944004.6421237",
     "file_path": "data\\pdfs\\GENAI.pdf"
   },
   "HSR_AI_H.pdf": {
     "hash": "6a8de8fe4f7201e47a858e0eb8b59596",
     "chunks": 116,
-    "processed_at": "1757854706.4382374",
+    "processed_at": "1757944004.6511238",
     "file_path": "data\\pdfs\\HSR_AI_H.pdf"
   },
   "Impact_of_genai.pdf": {
     "hash": "f3854a8236d986d2e360afefc688b10c",
     "chunks": 132,
-    "processed_at": "1757854706.4382374",
+    "processed_at": "1757944004.6641238",
     "file_path": "data\\pdfs\\Impact_of_genai.pdf"
   },
   "Role_of_AgenticAI.pdf": {
     "hash": "f59e8ffaa8a62e00d47b2571077a2fea",
     "chunks": 115,
-    "processed_at": "1757854706.4543815",
+    "processed_at": "1757944004.6812499",
     "file_path": "data\\pdfs\\Role_of_AgenticAI.pdf"
   },
   "Semiconductors.pdf": {
     "hash": "df1a48d8095c72a018bc7dcfee711244",
     "chunks": 33,
-    "processed_at": "1757854706.4543815",
+    "processed_at": "1757944004.687141",
     "file_path": "data\\pdfs\\Semiconductors.pdf"
-  },
-  "UPI.pdf": {
-    "hash": "07b776759efb5ce4b9e579f4caf55491",
-    "chunks": 50,
-    "processed_at": "1757854706.4701633",
-    "file_path": "data\\pdfs\\UPI.pdf"
-  },
-  "UPI_A_payment_solution.pdf": {
-    "hash": "11e796a184af6c44cc1cb53829331223",
-    "chunks": 65,
-    "processed_at": "1757854706.4706755",
-    "file_path": "data\\pdfs\\UPI_A_payment_solution.pdf"
   }
 }

@@ -7,7 +7,6 @@ langchain-nvidia-ai-endpoints
 langchain-chroma
 chromadb
 sse-starlette
-pypdf
 pymupdf
 langchain-google-genai
 uvicorn

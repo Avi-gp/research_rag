@@ -17,7 +17,7 @@ class Settings:
     LOGS_PATH: str = './logs'
     
     # Model settings
-    EMBEDDING_MODEL: str = "nvidia/nv-embedqa-e5-v5" 
+    EMBEDDING_MODEL: str = "nvidia/llama-3.2-nv-embedqa-1b-v2" 
     LLM_MODEL: str = "gemini-2.5-flash" 
     CHUNK_SIZE: int = 1000
     CHUNK_OVERLAP: int = 200

@@ -639,7 +639,7 @@ def summary_page():
                                       help="Enable/disable similarity threshold filtering", key="summary_threshold_checkbox")
             
             if use_threshold:
-                threshold = st.slider("🎯 Similarity Threshold", 0.2, 0.9, 0.5, 0.05, 
+                threshold = st.slider("🎯 Similarity Threshold", 0.2, 0.9, 0.4, 0.05, 
                                     help="Minimum similarity score", key="summary_threshold_slider")
             else:
                 threshold = None
@@ -874,28 +874,18 @@ def stats_page():
                 chunks_processed = stats.get('pdf_processor', {}).get('total_chunks_processed', 0)
                 st.info(f"📊 **Total Chunks:** {chunks_processed}")
             
-            # Files breakdown
+            # Files breakdown - removed file size column
             processed_files_info = stats.get('pdf_processor', {}).get('processed_files_info', {})
             if processed_files_info:
                 st.markdown("### 📂 Processed Files")
                 for filename, info in processed_files_info.items():
                     chunks = info.get('chunks', 0)
-                    file_size = info.get('file_size', 0) or info.get('size', 0) or info.get('file_size_bytes', 0)
                     
-                    col1, col2, col3 = st.columns([2, 1, 1])
+                    col1, col2 = st.columns([3, 1])
                     with col1:
                         st.write(f"📄 {filename}")
                     with col2:
                         st.write(f"📊 {chunks} chunks")
-                    with col3:
-                        if file_size >= 1024 * 1024:
-                            size_mb = file_size / (1024 * 1024)
-                            st.write(f"💾 {size_mb:.1f} MB")
-                        elif file_size >= 1024:
-                            size_kb = file_size / 1024
-                            st.write(f"💾 {size_kb:.1f} KB")
-                        else:
-                            st.write(f"💾 {file_size} B")
                 
         else:
             st.error(f"❌ Error fetching statistics: HTTP {response.status_code}")
