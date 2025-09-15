@@ -25,14 +25,24 @@ cd research_rag
 pip install -r requirements.txt
 ```
 
-### 3️⃣ Start the Backend (FastAPI)
+### 3️⃣ Add API Key(s)
+
+Create a .env file in the root directory and add your API keys. For example:
+```bash
+GOOGLE_API_KEY=your_gemini_key_here (For LLM)
+
+NVIDIA_API_KEY=your_nvidia_api_key (FOR Embedding Model)
+
+```
+
+### 4️⃣ Start the Backend (FastAPI)
 ```bash
 python api/main.py
 ```
 
-### 4️⃣ Run the Frontend (Streamlit)
+### 5️⃣ Run the Frontend (Streamlit)
 ```bash
-streamlit run ui/streamlit_app.py
+streamlit run ui/app.py
 ```
 
 ### 🔑 Features
@@ -52,7 +62,8 @@ streamlit run ui/streamlit_app.py
 ├── api/               # FastAPI backend
 ├── config/            # Settings and configurations
 ├── data/              # Stored PDFs and vector database
-├── streamlit_app.py   # Streamlit frontend
+├── services/          # # Core logic for LLM, PDF processing, vector store, and RAG pipeline
+├── ui/app.py          # Streamlit frontend
 └── requirements.txt   # Dependencies
 ```
 
