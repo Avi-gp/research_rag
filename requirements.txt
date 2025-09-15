@@ -3,6 +3,7 @@ streamlit
 dotenv
 langchain-core
 langchain-community
+langchain-nvidia-ai-endpoints
 langchain-chroma
 chromadb
 sse-starlette
@@ -15,7 +16,5 @@ tiktoken
 python-dotenv
 requests
 python-multipart
-shutil
-hashlib
 google-generativeai
 pathlib
