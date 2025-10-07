@@ -75,9 +75,12 @@ Only PDF files are supported for ingestion.
 
 Database management actions (resets, clears) are irreversible.
 
+Screenshots:
+<img width="1919" height="906" alt="Screenshot 2025-09-15 115006" src="https://github.com/user-attachments/assets/112fdf1d-5d11-433b-8bb0-d9540b84615b" />
+<img width="1919" height="905" alt="Screenshot 2025-09-15 115023" src="https://github.com/user-attachments/assets/c3a2becc-f7ce-4e9e-840e-bd009ec890ee" />
 <img width="1919" height="900" alt="Screenshot 2025-09-15 115054" src="https://github.com/user-attachments/assets/5834bade-b5cc-498d-8332-cc97ccbe9b59" />
 <img width="1919" height="912" alt="Screenshot 2025-09-15 115033" src="https://github.com/user-attachments/assets/afca4eac-a43a-454a-9a74-b87a8b5d52cf" />
-<img width="1919" height="905" alt="Screenshot 2025-09-15 115023" src="https://github.com/user-attachments/assets/c3a2becc-f7ce-4e9e-840e-bd009ec890ee" />
-<img width="1919" height="906" alt="Screenshot 2025-09-15 115006" src="https://github.com/user-attachments/assets/112fdf1d-5d11-433b-8bb0-d9540b84615b" />
+
+
 
 
