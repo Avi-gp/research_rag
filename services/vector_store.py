@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import List, Dict, Any, Optional, Tuple
 import logging
-from langchain.schema import Document
+from langchain_core.documents import Document
 from langchain_chroma import Chroma
 from models.embeddings import EmbeddingModel
 from config.settings import settings
@@ -16,6 +16,7 @@ logger = logging.getLogger(__name__)
 class VectorStore:
     """
     ChromaDB Vector Store implementation for document storage and semantic search.
+
     """
     
     def __init__(self):
@@ -112,6 +113,7 @@ class VectorStore:
                 raise ValueError("ChromaDB client not initialized")
             
             # Create new Chroma vector store using the existing client
+            # Note: ChromaDB 0.4.x+ automatically persists data
             self.vector_store = Chroma(
                 client=self.chroma_client,
                 collection_name=self.collection_name,
@@ -121,6 +123,7 @@ class VectorStore:
                     "description": "Vector store for research paper retrieval-augmented generation",
                     "distance_metric": "cosine",
                 },
+                # collection_configuration parameter for HNSW settings
                 collection_configuration={"hnsw:space": "cosine"}
             )
             
@@ -166,7 +169,7 @@ class VectorStore:
         self, 
         query: str, 
         k: int = 10,
-        threshold: Optional[float] = None  # Made optional - None means no filtering
+        threshold: Optional[float] = None
     ) -> List[Dict[str, Any]]:
         """
         Perform semantic similarity search using cosine similarity.
@@ -197,14 +200,14 @@ class VectorStore:
                 k=k
             )
             
-            # Log raw results (documents with distances) for debugging/monitoring
+            # Log raw results for debugging/monitoring
             try:
                 logger.info(f"Raw similarity_search_with_score returned {len(docs_with_distances)} items")
                 for idx, (doc, distance) in enumerate(docs_with_distances, start=1):
                     cosine_sim = 1 - distance
                     sim_score = (cosine_sim + 1) / 2
                     sim_score = max(0.0, min(1.0, sim_score))
-                    # Truncate content for logging to avoid huge logs
+                    # Truncate content for logging
                     snippet = getattr(doc, "page_content", "")[:200].replace("\n", " ")
                     metadata = getattr(doc, "metadata", {})
                     logger.info(
@@ -355,10 +358,10 @@ class VectorStore:
                             "storage_path": str(self.vector_db_path),
                             "collection_metadata": collection.metadata if hasattr(collection, 'metadata') else {},
                             "threshold_recommendations": {
-                                "high_quality": 0.7,      # Lowered from 0.8
-                                "good_quality": 0.5,      # Lowered from 0.7
-                                "moderate_quality": 0.3,  # Lowered from 0.6
-                                "low_quality": 0.2        # Lowered from 0.5
+                                "high_quality": 0.7,
+                                "good_quality": 0.5,
+                                "moderate_quality": 0.3,
+                                "low_quality": 0.2
                             }
                         })
                     else:
@@ -399,7 +402,6 @@ class VectorStore:
         Returns:
             List[Document]: Documents from the specified source
         """
-        # Ensure collection is loaded
         if not self._ensure_collection_loaded():
             logger.warning("No vector collection available for source search")
             return []
@@ -408,7 +410,7 @@ class VectorStore:
             # Try ChromaDB's native metadata filtering first
             try:
                 results = self.vector_store.similarity_search(
-                    query="",  # Empty query since we're filtering by metadata
+                    query="",  # Empty query for metadata-only filtering
                     k=k,
                     filter={"source": source}  # ChromaDB metadata filtering
                 )
@@ -420,7 +422,6 @@ class VectorStore:
                 pass
             
             # Fallback: Get all documents and filter manually
-            # Use a generic query to get documents
             all_docs = self.vector_store.similarity_search(
                 query="content",  # Generic query
                 k=k * 3  # Get more to account for filtering
@@ -429,7 +430,7 @@ class VectorStore:
             matching_docs = [
                 doc for doc in all_docs 
                 if doc.metadata.get('source') == source
-            ][:k]  # Limit to k results
+            ][:k]
             
             logger.info(f"Found {len(matching_docs)} documents from source (fallback): {source}")
             return matching_docs
@@ -541,7 +542,7 @@ class VectorStore:
         """Cleanup when object is destroyed"""
         try:
             if hasattr(self, 'chroma_client') and self.chroma_client:
-                # ChromaDB handles cleanup automatically for persistent clients
+                # ChromaDB 0.4.x+ handles cleanup automatically for persistent clients
                 pass
         except Exception:
             pass  # Ignore cleanup errors

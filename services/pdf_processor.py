@@ -1,8 +1,8 @@
 from pathlib import Path
 from typing import List
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.schema import Document
-from langchain_community.document_loaders import DirectoryLoader, PyMuPDFLoader
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_core.documents import Document
+from langchain_community.document_loaders import PyMuPDFLoader
 from config.settings import settings
 import hashlib
 import json
@@ -10,6 +10,9 @@ import os
 
 class PDFProcessor:
     def __init__(self):
+        """
+        Initialize PDF processor with text splitter and tracking system.
+        """
         self.text_splitter = RecursiveCharacterTextSplitter(
             chunk_size=settings.CHUNK_SIZE,
             chunk_overlap=settings.CHUNK_OVERLAP,
@@ -67,8 +70,13 @@ class PDFProcessor:
     
     def process_pdfs_from_directory(self, pdf_directory: str) -> List[Document]:
         """
-        Process all PDFs in a directory using LangChain's DirectoryLoader and PyMuPDFLoader.
+        Process all PDFs in a directory using PyMuPDFLoader.
         Only processes files that are new or have changed.
+        
+        Updated approach:
+        - Uses individual PyMuPDFLoader instances for each PDF (more efficient)
+        - Leverages PyMuPDFLoader's latest features
+        - Better error handling per file
         """
         pdf_path = Path(pdf_directory)
         if not pdf_path.exists():
@@ -82,7 +90,7 @@ class PDFProcessor:
         
         # Filter files that need processing
         files_to_process = [
-            str(pdf_file) for pdf_file in pdf_files 
+            pdf_file for pdf_file in pdf_files 
             if self._should_process_file(str(pdf_file))
         ]
         
@@ -93,34 +101,40 @@ class PDFProcessor:
         print(f"Processing {len(files_to_process)} PDF files...")
         
         try:
-            # Create DirectoryLoader with PyMuPDFLoader
-            loader = DirectoryLoader(
-                pdf_directory,
-                glob="*.pdf",
-                loader_cls=PyMuPDFLoader,
-                show_progress=True,
-                use_multithreading=True
-            )
+            documents = []
             
-            # Load documents
-            documents = loader.load()
+            # Process each PDF file individually
+            for pdf_file in files_to_process:
+                try:
+                    # Create loader for this specific PDF
+                    loader = PyMuPDFLoader(
+                        file_path=str(pdf_file),
+                        mode="page"  # Extract page by page (default and recommended)
+                    )
+                    
+                    # Load documents from this PDF
+                    file_documents = loader.load()
+                    
+                    if file_documents:
+                        print(f"Loaded {len(file_documents)} pages from {pdf_file.name}")
+                        documents.extend(file_documents)
+                    else:
+                        print(f"Warning: No content extracted from {pdf_file.name}")
+                        
+                except Exception as e:
+                    print(f"Error processing {pdf_file.name}: {str(e)}")
+                    continue
             
             if not documents:
-                print("No documents were loaded from the directory")
+                print("No documents were successfully loaded from the directory")
                 return []
             
-            # Filter documents to only include those that need processing
-            filtered_documents = [
-                doc for doc in documents 
-                if doc.metadata.get('source') in files_to_process
-            ]
-            
-            print(f"Loaded {len(filtered_documents)} documents from {len(files_to_process)} files")
+            print(f"Successfully loaded {len(documents)} pages from {len(files_to_process)} files")
             
             # Split documents into chunks
-            all_chunks = self.text_splitter.split_documents(filtered_documents)
+            all_chunks = self.text_splitter.split_documents(documents)
             
-            # Add chunk metadata and update processed files record
+            # Add chunk metadata and track chunks per source
             chunks_by_source = {}
             for i, chunk in enumerate(all_chunks):
                 source = chunk.metadata.get('source', 'unknown')
@@ -136,7 +150,7 @@ class PDFProcessor:
                     "global_chunk_id": i
                 })
             
-            # Update total chunks for each source and save records
+            # Update total chunks for each source
             for chunk in all_chunks:
                 source = chunk.metadata.get('source')
                 if source:

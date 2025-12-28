@@ -1,19 +1,44 @@
-langchain
-streamlit 
-dotenv
-langchain-core
-langchain-community
-langchain-nvidia-ai-endpoints
-langchain-chroma
-chromadb
-sse-starlette
-pymupdf
-langchain-google-genai
-uvicorn
-fastapi
-tiktoken
-python-dotenv
-requests
-python-multipart
-google-generativeai
-pathlib
+# Core LangChain packages
+langchain==1.2.0
+langchain-core==1.2.5
+langchain-community==0.4.1
+langchain-text-splitters==1.1.0
+
+# LLM Integration - Google Gemini
+langchain-google-genai==4.1.2
+
+# Vector Store - ChromaDB
+langchain-chroma==1.1.0
+chromadb==1.4.0
+
+# Embeddings - NVIDIA
+langchain-nvidia-ai-endpoints==1.0.0
+
+# Document Processing
+pymupdf==1.26.7
+
+# Web Framework & API
+fastapi==0.128.0
+uvicorn==0.40.0
+sse-starlette==3.1.1
+
+# Streamlit
+streamlit==1.52.2
+
+# Data Processing
+numpy==2.4.0
+pydantic==2.12.5
+pydantic-settings==2.12.0
+
+# HTTP Requests
+requests==2.32.5
+httpx==0.28.1
+
+# Environment Variables
+python-dotenv==1.2.1
+
+# File Upload Support
+python-multipart==0.0.21
+
+# Token Counting 
+tiktoken==0.12.0

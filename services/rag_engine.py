@@ -25,6 +25,11 @@ def convert_numpy_types(obj):
 
 
 class RAGEngine:
+    """
+    RAG Engine for document ingestion, retrieval, and question answering.
+    
+    """
+    
     def __init__(self):
         self.pdf_processor = PDFProcessor()
         self.vector_store = VectorStore()
@@ -34,7 +39,7 @@ class RAGEngine:
     def ingest_documents(self, pdf_paths: List[str] = None, pdf_directory: str = None) -> Dict[str, Any]:
         """Ingest PDF documents into the RAG system"""
         try:
-            # Use the new process_pdfs_from_directory method
+            # Use the process_pdfs_from_directory method
             if pdf_directory:
                 documents = self.pdf_processor.process_pdfs_from_directory(pdf_directory)
             elif pdf_paths:
@@ -279,7 +284,7 @@ class RAGEngine:
                 "processor_reset": True
             }
             
-            # Reset vector store using the new method name
+            # Reset vector store
             vector_result = self.vector_store.clear_collection()
             results["vector_store_reset"] = vector_result
             

@@ -1,12 +1,14 @@
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain.schema import HumanMessage, SystemMessage
+from langchain_core.messages import HumanMessage, SystemMessage
 from config.settings import settings
 from typing import Optional
-import google.generativeai as genai
 
 class LLMService:
     def __init__(self):
-        genai.configure(api_key=settings.GOOGLE_API_KEY)
+        """
+        Initialize LLM service with Google's Gemini model.
+
+        """
         self.llm = ChatGoogleGenerativeAI(
             model=settings.LLM_MODEL,
             google_api_key=settings.GOOGLE_API_KEY,
